@@ -25,7 +25,7 @@ async def close_donation_for_obj(obj_in: Union[CharityProject, Donation]):
     return obj_in
 
 
-async def money_invest(
+async def invest_money(
     obj_in: Union[CharityProject, Donation],
     obj_model: Union[CharityProject, Donation],
 ) -> Union[CharityProject, Donation]:
@@ -55,7 +55,7 @@ async def investing_process(
     objects_model = await get_not_full_invested_objects(model_add, session)
 
     for obj_model in objects_model:
-        obj_in, obj_model = await money_invest(obj_in, obj_model)
+        obj_in, obj_model = await invest_money(obj_in, obj_model)
         session.add(obj_in)
         session.add(obj_model)
 
