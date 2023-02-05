@@ -1,7 +1,7 @@
 from datetime import datetime
 from typing import Optional
 
-from pydantic import BaseModel, Field, PositiveInt, root_validator, validator
+from pydantic import BaseModel, Field, PositiveInt
 
 
 class DonationBase(BaseModel):

@@ -1,5 +1,3 @@
-from datetime import datetime
-
 from sqlalchemy import Column, ForeignKey, Integer, Text
 
 from .abstract import Abstract

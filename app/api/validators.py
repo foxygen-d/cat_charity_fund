@@ -1,7 +1,6 @@
 from http import HTTPStatus
 
 from fastapi import HTTPException
-from pydantic import PositiveInt
 from sqlalchemy.ext.asyncio import AsyncSession
 
 from app.crud.charity_project import charity_project_crud
@@ -19,10 +18,8 @@ async def check_name_duplicate(
             detail='Проект с таким именем уже существует!',
         )
 
-def check_charity_project_invested_sum(
-    project: CharityProject,
-    new_amount: int,
-):
+
+def check_charity_project_invested_sum(project: CharityProject, new_amount: int):
    if project.invested_amount > new_amount:
         raise HTTPException(
             status_code=HTTPStatus.BAD_REQUEST,

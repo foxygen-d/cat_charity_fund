@@ -1,10 +1,8 @@
-from typing import List, Optional
+from typing import Optional
 
-from fastapi.encoders import jsonable_encoder
-from sqlalchemy import func, select
+from sqlalchemy import select
 from sqlalchemy.ext.asyncio import AsyncSession
 
-from app.core.db import AsyncSessionLocal
 from app.crud.base import CRUDBase
 from app.models.charity_project import CharityProject
 

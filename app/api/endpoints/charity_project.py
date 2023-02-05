@@ -1,7 +1,6 @@
-from http import HTTPStatus
 from typing import List
 
-from fastapi import APIRouter, Depends, HTTPException
+from fastapi import APIRouter, Depends
 from sqlalchemy.ext.asyncio import AsyncSession
 
 from app.api.validators import (check_charity_project_already_invested,
@@ -12,7 +11,7 @@ from app.api.validators import (check_charity_project_already_invested,
 from app.core.db import get_async_session
 from app.core.user import current_superuser
 from app.crud.charity_project import charity_project_crud
-from app.models import CharityProject, Donation
+from app.models import Donation
 from app.schemas.charity_project import (CharityProjectCreate,
                                          CharityProjectDB,
                                          CharityProjectUpdate)
@@ -35,7 +34,7 @@ async def create_charity_project(
     Создает благотворительный проект.
     """
     await check_name_duplicate(charity_project.name, session)
-    project_id = await charity_project_crud.get_project_id_by_name(
+    await charity_project_crud.get_project_id_by_name(
         charity_project.name, session
     )
     new_project = await charity_project_crud.create(charity_project, session)

@@ -21,6 +21,7 @@ router.include_router(
     tags=['users'],
 )
 
+
 @router.delete(
     '/users/{id}',
     tags=['users'],
