@@ -20,10 +20,10 @@ async def check_name_duplicate(
 
 
 def check_charity_project_invested_sum(project: CharityProject, new_amount: int):
-   if project.invested_amount > new_amount:
+    if project.invested_amount > new_amount:
         raise HTTPException(
             status_code=HTTPStatus.BAD_REQUEST,
-            detail="Нельзя установить сумму, ниже уже вложенной!"
+            detail='Нельзя установить сумму, ниже уже вложенной!'
         )
 
 
