@@ -47,7 +47,7 @@ async def get_all_donations(
 
 @router.get(
     '/my',
-    response_model=List[DonationDB],
+    response_model=List[DonationCreate],
     response_model_exclude={'user_id'},
 )
 async def get_my_reservations(

@@ -1,17 +1,14 @@
 from datetime import datetime
+from typing import Optional
 
-from sqlalchemy import Column, Integer, DateTime, Boolean
+from sqlalchemy import Boolean, Column, DateTime, Integer
 from sqlalchemy.ext.asyncio import AsyncSession, create_async_engine
 from sqlalchemy.orm import declarative_base, declared_attr, sessionmaker
-
-from typing import Optional
 
 from app.core.config import settings
 
 
 class PreBase:
-
-    __table_args__ = {'extend_existing': True}
 
     @declared_attr
     def __tablename__(cls):

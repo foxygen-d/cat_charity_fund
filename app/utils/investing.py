@@ -4,7 +4,7 @@ from typing import List, Union
 from sqlalchemy import select
 from sqlalchemy.ext.asyncio import AsyncSession
 
-from models import CharityProject, Donation
+from app.models import CharityProject, Donation
 
 
 async def get_not_full_invested_objects(

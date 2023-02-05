@@ -1,13 +1,12 @@
 from typing import List, Optional
 
-from core.db import AsyncSessionLocal
-from crud.base import CRUDBase
-from models.charity_project import CharityProject
-from schemas.charity_project import (CharityProjectCreate,
-                                     CharityProjectUpdate)
 from fastapi.encoders import jsonable_encoder
-from sqlalchemy import select, func
+from sqlalchemy import func, select
 from sqlalchemy.ext.asyncio import AsyncSession
+
+from app.core.db import AsyncSessionLocal
+from app.crud.base import CRUDBase
+from app.models.charity_project import CharityProject
 
 
 class CRUDCharityProject(CRUDBase):
@@ -28,7 +27,6 @@ class CRUDCharityProject(CRUDBase):
                                         project_id: int,
                                         session: AsyncSession,
                                         ) -> Optional[CharityProject]:
-        """Получить проект по ID."""
         db_project = await session.execute(
             select(CharityProject).where(
                 CharityProject.id == project_id
@@ -36,21 +34,6 @@ class CRUDCharityProject(CRUDBase):
         )
         db_project = db_project.scalars().first()
         return db_project
-
-    async def get_projects_by_completion_rate(self,
-                                              session: AsyncSession
-                                              ) -> List[dict]:
-        projects = await session.execute(
-            select([CharityProject.name,
-                    CharityProject.create_date,
-                    CharityProject.close_date,
-                    CharityProject.description]).where(
-                CharityProject.fully_invested
-            ).order_by((func.julianday(CharityProject.close_date) -
-                        func.julianday(CharityProject.create_date)).desc())
-        )
-        projects = projects.all()
-        return projects
 
 
 charity_project_crud = CRUDCharityProject(CharityProject)
