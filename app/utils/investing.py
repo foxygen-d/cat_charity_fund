@@ -54,10 +54,10 @@ async def investing_process(
 ) -> Union[CharityProject, Donation]:
     objects_model = await get_not_full_invested_objects(model_add, session)
 
-    for obj_model in objects_model:
-        obj_in, obj_model = await invest_money(obj_in, obj_model)
+    for model in objects_model:
+        obj_in, model = await invest_money(obj_in, model)
         session.add(obj_in)
-        session.add(obj_model)
+        session.add(model)
 
     await session.commit()
     await session.refresh(obj_in)
