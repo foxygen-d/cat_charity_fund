@@ -1,3 +1,7 @@
+![repo size](https://img.shields.io/github/repo-size/foxygen-d/cat_charity_fund)
+![py version](https://img.shields.io/pypi/pyversions/3)
+
+
 # Приложение QRKot
 
 
